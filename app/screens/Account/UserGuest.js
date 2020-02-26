@@ -8,8 +8,13 @@ import {
     Image
 } from 'react-native';
 import {Button} from 'react-native-elements';
+// Esto nos permite redireccionar a otro componente/pantalla dentro de este mismo Stack de rutas (AccountStacks.js)
+import {withNavigation} from 'react-navigation';
 
-export default function UserGuest() {
+// Para que funcione el withNavigation es necesario quitar el antiguo "export default" y añadirle los "props". Estos "props" vienen automáticamente gracias al withNavigation
+function UserGuest(props) {
+    // Esta es la propiedad que se necesita para redireccionar
+    const {navigation} = props;
     return (
         <ScrollView style={styles.viewBody} centerContent={true}>
             <Image source={require("../../../assets/img/user-guest.jpg")} style={styles.image} resizeMode="contain"/>
@@ -19,11 +24,15 @@ export default function UserGuest() {
                 comenta cómo ha sido tu experiencia?
             </Text>
             <View style={styles.viewBtn}>
-                <Button buttonStyle={styles.btnStyle} containerStyle={styles.btnContainer} title="Ver tu perfil" onPress={() => console.log('Hola mundo')}/>
+                {/* Ahora el botón utilizará una de las props de withNavigation para redireccionar al Login. 
+                El nombre "Login" es el que se le ha puesto a la ruta del AccountScreeStacks (AccountStacks.js)  */}
+                <Button buttonStyle={styles.btnStyle} containerStyle={styles.btnContainer} title="Ver tu perfil" onPress={() => navigation.navigate("Login")}/>
             </View>
         </ScrollView>
     )
 }
+// Esto es lo que otorga las propiedades de "withNavigation" al componente
+export default withNavigation(UserGuest);
 
 const styles = StyleSheet.create({
     viewBody: {
