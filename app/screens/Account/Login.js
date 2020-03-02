@@ -7,8 +7,9 @@ import {
     Image
 } from 'react-native';
 import {Divider} from 'react-native-elements';
-import {withNavigation} from 'react-navigation';
+/* import {withNavigation} from 'react-navigation'; No es necesario en este caso*/
 
+// Como este componente es uno de los "principales" de un Stack de navigation, los props de "withNavigation" ya vienen precargados
 export default function Login(props) {
     const {navigation} = props;
     return (
