@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
     StyleSheet,
     View,
@@ -9,20 +9,28 @@ import {
 import {Divider} from 'react-native-elements';
 /* import {withNavigation} from 'react-navigation'; No es necesario en este caso*/
 
+import LoginForm from '../../components/Account/LoginForm';
+
+import Toast from 'react-native-easy-toast';
+
+import LoginFacebook from '../../components/Account/LoginFacebook';
+
 // Como este componente es uno de los "principales" de un Stack de navigation, los props de "withNavigation" ya vienen precargados
 export default function Login(props) {
     const {navigation} = props;
+    const toastRef = useRef();
     return (
         <ScrollView>
             <Image source={require("../../../assets/img/5-tenedores-letras-icono-logo.png")} style={styles.logo} resizeMode="contain"/>
             <View style={styles.viewContainer}>
-                <Text>Form Login...</Text>
+                <LoginForm toastRef={toastRef}/>
                 <CreateAccount navigation={navigation}/>
             </View>
             <Divider style={styles.divider}/>
             <View style={styles.viewContainer}>
-                <Text>Login facebook</Text>
+                <LoginFacebook />
             </View>
+            <Toast ref={toastRef} position="center" opacity={0.5}/>
         </ScrollView>
     );
 }
