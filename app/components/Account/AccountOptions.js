@@ -59,11 +59,11 @@ export default function AccountOptions(props) {
                 setIsVisibleModal(true);
                 break;
             case "displayEmail":
-                setRenderComponent(<ChangeDisplayEmailForm />)
+                setRenderComponent(<ChangeDisplayEmailForm email={userInfo.email} setIsVisibleModal={setIsVisibleModal} setReloadData={setReloadData} toastRef={toastRef}/>)
                 setIsVisibleModal(true);
                 break;
             case "displayPassword":
-                setRenderComponent(<ChangeDisplayPasswordForm />)
+                setRenderComponent(<ChangeDisplayPasswordForm setIsVisibleModal={setIsVisibleModal} toastRef={toastRef}/>)
                 setIsVisibleModal(true);
                 break;
             default:
