@@ -10,7 +10,8 @@ import MapView from 'react-native-maps';
 import * as Location from 'expo-location';
 import Modal from '../Modal';
 
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'random-uuid-v4'
+//import { v4 as uuidv4 } from '';
 
 import {firebaseApp} from '../../utils/FireBase';
 import firebase from 'firebase/app';
@@ -21,7 +22,7 @@ const db = firebase.firestore(firebaseApp);
 const WidthScreen = Dimensions.get("window").width;
 
 export default function AddRestaurantForm(props) {
-    const {navigation, toastRef, setisLoading} = props;
+    const {navigation, toastRef, setisLoading, setIsReloadRestaurants} = props;
 
     // Array donde se van a guardar las imagenes que se van a subir al crear un restaurante
     const [imagesSelected, setImagesSelected] = useState([])
@@ -62,6 +63,7 @@ export default function AddRestaurantForm(props) {
                     createBy: firebase.auth().currentUser.uid
                 }).then(() => {
                     setisLoading(false);
+                    setIsReloadRestaurants(true);
                     navigation.navigate("Restaurants");
                 }).catch((error) => {
                     setisLoading(false)
