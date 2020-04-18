@@ -10,8 +10,8 @@ import MapView from 'react-native-maps';
 import * as Location from 'expo-location';
 import Modal from '../Modal';
 
-import { v4 as uuidv4 } from 'random-uuid-v4'
-//import { v4 as uuidv4 } from '';
+
+import uuidv4 from 'uuid/v5';
 
 import {firebaseApp} from '../../utils/FireBase';
 import firebase from 'firebase/app';
